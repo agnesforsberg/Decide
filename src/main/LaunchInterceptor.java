@@ -9,6 +9,8 @@ public class LaunchInterceptor {
      */
     Point[] points;
 
+    Parameters parameters;
+
     /** Conditions Met Vector (CMV) 
      * The fifteen elements of a Conditions Met Vector (CMV) will be assigned boolean values true or false;
      * each element of the CMV corresponds to one LIC’s condition.
@@ -22,8 +24,12 @@ public class LaunchInterceptor {
     boolean[] puv;
     boolean[] fuv;
 
-    public LaunchInterceptor(){
-
+    public LaunchInterceptor(int numPoints, Point[] points, Parameters parameters,Connector[][] lcm, boolean[] puv){
+        this.numPoints = numPoints;
+        this.points = points;
+        this.parameters = parameters;
+        this.lcm = lcm;
+        this.puv = puv;
     }
 
     public boolean decide(){
