@@ -3,7 +3,7 @@ package Decide.src.main;
 public class LaunchInterceptor {
 
 
-    boolean decide(){
+    public boolean decide(){
         return true;
     }
 
@@ -23,7 +23,5 @@ public class LaunchInterceptor {
     boolean lic13() {return true;} 
     boolean lic14() {return true;} 
 
-    public static void main(String[] args) {
-        System.out.println("asd");
-    }
+
 }
