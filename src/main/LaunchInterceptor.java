@@ -146,8 +146,58 @@ public class LaunchInterceptor {
         return true;
     }
 
-    boolean lic6() {
-        return true;
+    /**
+     * There exists at least one set of N PTS consecutive data points such that at
+     * least one of the points lies a distance greater than DIST from the line
+     * joining the first and last of these N PTS points. If the first and last
+     * points of these N PTS are identical, then the calculated distance to compare
+     * with DIST will be the distance from the coincident point to all other points
+     * of the N PTS consecutive points. The condition is not met when NUMPOINTS < 3.
+     * (3 ≤ N PTS ≤ NUMPOINTS), (0 ≤ DIST)
+     * 
+     * @return whether the LIC6 condition holds or not.
+     */
+    public boolean lic6() {
+        if (numPoints < 3)
+            return false;
+
+        Point start, end, intermediate;
+
+        for (int starti = 0; starti < numPoints - parameters.N_PTS + 1; starti++) {
+            int endi = starti + parameters.N_PTS - 1;
+
+            start = points[starti];
+            end = points[endi];
+
+            boolean coincidentPoint = false;
+
+            /*
+             * If start and end coincide they make a coincident point.
+             */
+            if (start.equals(end))
+                coincidentPoint = true;
+
+            for (int intermediatei = starti + 1; intermediatei < endi; intermediatei++) {
+                intermediate = points[intermediatei];
+                double distance;
+
+                /*
+                 * If the endpoints make a coincident point, distance is to be calculated to
+                 * that point. Otherwise, it is to be calculated to the line through those two
+                 * points.
+                 */
+                if (coincidentPoint)
+                    distance = intermediate.distanceTo(start);
+                else
+                    distance = intermediate.distanceToLineThrough(start, end);
+
+                if (distance > parameters.DIST)
+                    return true;
+            }
+
+        }
+
+        return false;
     }
 
     boolean lic7() {
