@@ -147,4 +147,33 @@ public class PointTest {
         assertFalse(p.equals(new Point(10, 0)));
     }
 
+    @Test
+    public void distanceWhenPointOnLineTest() {
+        Point p = new Point(10, 10);
+
+        Point l1 = new Point(5, 5);
+        Point l2 = new Point(15, 15);
+
+        assertEquals(0, p.distanceToLineThrough(l1, l2), expectedAccuracy);
+    }
+
+    @Test
+    public void distanceWhenPointsFormAcuteTriangle() {
+        Point p = new Point(0, -3);
+
+        Point l1 = new Point(-3, 0);
+        Point l2 = new Point(3, 0);
+
+        assertEquals(3, p.distanceToLineThrough(l1, l2), expectedAccuracy);
+    }
+
+    @Test
+    public void distanceWhenPointsFormObtuseTriangle() {
+        Point p = new Point(-100, -5);
+
+        Point l1 = new Point(5, 0);
+        Point l2 = new Point(10, 0);
+
+        assertEquals(5, p.distanceToLineThrough(l1, l2), expectedAccuracy);
+    }
 }
