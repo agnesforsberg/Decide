@@ -1,5 +1,8 @@
 package Decide.src.test;
 
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
 public class LaunchInterceptorTest {
     
     /** LIC0 Descriptor
@@ -8,7 +11,10 @@ public class LaunchInterceptorTest {
      * 
      * (0 ≤ LENGTH1)
      */
-    void lic0Test(){}
+    @Test
+    public void lic0Test(){
+        assertTrue(1 == 0);
+    }
 
     /** LIC1 Descriptor
      * There exists at least one set of three consecutive data points
@@ -16,7 +22,8 @@ public class LaunchInterceptorTest {
      * 
      * (0 ≤ RADIUS1)
      */
-    void lic1Test(){}
+    @Test
+    public void lic1Test(){}
 
     /** LIC2 Descriptor
      * There exists at least one set of three consecutive data points which form an angle such that:
@@ -27,7 +34,8 @@ public class LaunchInterceptorTest {
      * 
      * (0 ≤ EPSILON < PI)
      */
-    void lic2Test(){}
+    @Test
+    public void lic2Test(){}
 
     /** LIC3 Descriptor
      * There exists at least one set of three consecutive data points
@@ -35,7 +43,8 @@ public class LaunchInterceptorTest {
      * 
      * (0 ≤ AREA1)
      */
-    void lic3Test(){}
+    @Test
+    public void lic3Test(){}
 
     /** LIC4 Descripitor
      * There exists at least one set of Q PTS consecutive data points that lie in more than QUADS quadrants.
@@ -47,14 +56,16 @@ public class LaunchInterceptorTest {
      * 
      * (2 ≤ Q PTS ≤ NUMPOINTS), (1 ≤ QUADS ≤ 3)
      */
-    void lic4Test(){}
+    @Test
+    public void lic4Test(){}
 
     /** LIC5 Descriptor
      * There exists at least one set of two consecutive data points,
      *  (X[i],Y[i]) and (X[j],Y[j]), 
      * such that X[j] - X[i] < 0. (where i = j-1)
      */
-    void lic5Test(){}
+    @Test
+    public void lic5Test(){}
 
     /** LIC6 Descriptor
      * There exists at least one set of N PTS consecutive data points
@@ -66,7 +77,8 @@ public class LaunchInterceptorTest {
      * 
      * (3 ≤ N PTS ≤ NUMPOINTS), (0 ≤ DIST)
      */
-    void lic6Test(){}
+    @Test
+    public void lic6Test(){}
 
     /** LIC7 Descriptor
      * There exists at least one set of two data points separated by exactly K PTS
@@ -75,7 +87,8 @@ public class LaunchInterceptorTest {
      * 
      * 1 ≤ K PTS ≤ (NUMPOINTS−2)
      */
-    void lic7Test(){}
+    @Test
+    public void lic7Test(){}
 
     /** LIC8 Descriptor
      * There exists at least one set of three data points separated by exactly A PTS and B PTS
@@ -86,7 +99,8 @@ public class LaunchInterceptorTest {
      * 1 ≤ A PTS, 1 ≤ B PTS
      * A PTS+B PTS ≤ (NUMPOINTS−3)
      */
-    void lic8Test(){}
+    @Test
+    public void lic8Test(){}
 
     /** LIC9 Descriptor
      * There exists at least one set of three data points separated by exactly C PTS and D PTS
@@ -102,7 +116,8 @@ public class LaunchInterceptorTest {
      * 1 ≤ C PTS, 1 ≤ D PTS
      * C PTS+D PTS ≤ NUMPOINTS−3
      */
-    void lic9Test(){}
+    @Test
+    public void lic9Test(){}
 
     /** LIC10 Descriptor
      * There exists at least one set of three data points separated by exactly
@@ -113,7 +128,8 @@ public class LaunchInterceptorTest {
      * 1 ≤ E PTS, 1 ≤ F PTS
      * E PTS+F PTS ≤ NUMPOINTS−3
      */
-    void lic10Test(){}
+    @Test
+    public void lic10Test(){}
 
     /** LIC11 Descriptor
      * There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), 
@@ -123,7 +139,8 @@ public class LaunchInterceptorTest {
      * 
      * 1 ≤ G PTS ≤ NUMPOINTS−2
      */
-    void lic11Test(){}
+    @Test
+    public void lic11Test(){}
 
     /** LIC12 Descriptor
      * There exists at least one set of two data points, separated by exactly K PTS consecutive
@@ -139,7 +156,8 @@ public class LaunchInterceptorTest {
      * 
      * 0 ≤ LENGTH2
      */
-    void lic12Test(){}
+    @Test
+    public void lic12Test(){}
 
     /** LIC13 Descriptor
      * There exists at least one set of three data points, separated by exactly
@@ -156,7 +174,8 @@ public class LaunchInterceptorTest {
      * 
      * 0 ≤ RADIUS2
      */
-    void lic13Test(){}
+    @Test
+    public void lic13Test(){}
 
     /** LIC14 Descriptor
      * There exists at least one set of three data points, separated by exactly 
@@ -173,5 +192,6 @@ public class LaunchInterceptorTest {
      * 
      * 0 ≤ AREA2
      */
-    void lic14Test(){}
+    @Test
+    public void lic14Test(){}
 }
