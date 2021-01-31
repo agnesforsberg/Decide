@@ -1,5 +1,8 @@
 package Decide.src.main;
 
+import java.lang.Math;
+import java.util.stream.DoubleStream;
+
 public class LaunchInterceptor {
 
     // The global input
@@ -79,8 +82,52 @@ public class LaunchInterceptor {
         return true;
     }
 
-    boolean lic1() {
-        return true;
+    /**
+     * Returns true if there exists at least one set of three consecutive data
+     * points that cannot all be contained within or on a circle of radius RADIUS1.
+     * (0 ≤ RADIUS1)
+     * 
+     * @return whether the LIC1 condition holds or not.
+     */
+    public boolean lic1() {
+        if (numPoints < 3)
+            return false;
+
+        for (int i = 0; i < numPoints - 2; i++) {
+            Point a = points[i];
+            Point b = points[i + 1];
+            Point c = points[i + 2];
+
+            double oRadius;
+
+            /*
+             * if the points make an obtuse triangle, then the longest distance between any
+             * two points make the diameter of the smallest encompassing circle.
+             */
+            if (a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
+                    || c.angleBetween(a, b) > Math.PI / 2) {
+                oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
+            } else {
+                /*
+                 * otherwise, we'll have to use the law of sines.
+                 * 
+                 * @see https://en.wikipedia.org/wiki/Law_of_sines
+                 */
+                double angle = a.angleBetween(b, c);
+                double len = b.distanceTo(c);
+                oRadius = (len / Math.sin(angle)) / 2;
+            }
+
+            /*
+             * If the radius of the smallest possible encompassing circle is larger than the
+             * set RADIUS1, then we've found three consecutive points which can not be
+             * contained within a circle of radius RADIUS1.
+             */
+            if (oRadius > parameters.RADIUS1)
+                return true;
+        }
+
+        return false;
     }
 
     boolean lic2() {
