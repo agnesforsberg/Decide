@@ -78,9 +78,9 @@ public class LaunchInterceptor {
         return true;
     }
 
-    boolean lic0() {
+    public boolean lic0() {
         for (int i = 1; i < numPoints; i++) {
-            if (points[i - 1].distanceTo(points[i]) > LENGTH1) {
+            if (points[i - 1].distanceTo(points[i]) > parameters.LENGTH1) {
                 return true;
             }
         }
