@@ -64,4 +64,20 @@ public class Point {
 
         return Math.acos(dotProduct / (lenOA * lenOB));
     }
+
+    /**
+     * Returns the distance between this point and the line formed by two given
+     * points.
+     * 
+     * @see https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
+     * 
+     * @param a the first of the two points making up a line.
+     * @param b the second of the two points making up a line.
+     * @return the distance between this point and that line.
+     */
+    public double distanceToLineThrough(Point a, Point b) {
+        double num = Math.abs((b.x - a.x) * (a.y - this.y) - (a.x - this.x) * (b.y - a.y));
+        double denom = Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+        return num / denom;
+    }
 }
