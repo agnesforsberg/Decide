@@ -70,15 +70,18 @@ public class LaunchInterceptor {
 
     /**
      * The funal launch decision as defined in the project specification.
-     * 
+     *
      * @return the signal controlling whether an interceptor should be launched
-     *         based upon input radar tracking information.
+     * based upon input radar tracking information.
      */
     public boolean decide() {
         return true;
     }
 
     public boolean lic0() {
+        if (numPoints < 2) {
+            return false;
+        }
         for (int i = 1; i < numPoints; i++) {
             if (points[i - 1].distanceTo(points[i]) > parameters.LENGTH1) {
                 return true;
@@ -91,7 +94,7 @@ public class LaunchInterceptor {
      * Returns true if there exists at least one set of three consecutive data
      * points that cannot all be contained within or on a circle of radius RADIUS1.
      * (0 ≤ RADIUS1)
-     * 
+     *
      * @return whether the LIC1 condition holds or not.
      */
     public boolean lic1() {
@@ -115,7 +118,7 @@ public class LaunchInterceptor {
             } else {
                 /*
                  * otherwise, we'll have to use the law of sines.
-                 * 
+                 *
                  * @see https://en.wikipedia.org/wiki/Law_of_sines
                  */
                 double angle = a.angleBetween(b, c);
@@ -159,7 +162,7 @@ public class LaunchInterceptor {
      * with DIST will be the distance from the coincident point to all other points
      * of the N PTS consecutive points. The condition is not met when NUMPOINTS < 3.
      * (3 ≤ N PTS ≤ NUMPOINTS), (0 ≤ DIST)
-     * 
+     *
      * @return whether the LIC6 condition holds or not.
      */
     public boolean lic6() {
@@ -226,7 +229,7 @@ public class LaunchInterceptor {
      * (X[j],Y[j]), separated by exactly G_PTS consecutive intervening points, such
      * that X[j] - X[i] < 0. (where i < j ) The condition is not met when NUMPOINTS
      * < 3. 1 ≤ G PTS ≤ NUMPOINTS−2
-     * 
+     *
      * @return whether the LIC11 condition holds or not.
      */
     public boolean lic11() {
