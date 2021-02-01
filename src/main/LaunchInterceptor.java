@@ -284,8 +284,68 @@ public class LaunchInterceptor {
         return true;
     }
 
-    boolean lic13() {
-        return true;
+    /**
+     * There exists at least one set of three data points, separated by exactly A PTS
+     * and B PTS consecutive intervening points, respectively, that cannot be contained
+     * within or on a circle of radius RADIUS1. In addition, there exists at least one
+     * set of three data points (which can be the same or different from the three data
+     * points just mentioned) separated by exactly A PTS and B PTS consecutive intervening
+     * points, respectively, that can be contained in or on a circle of radius RADIUS2.
+     * Both parts must be true for the LIC to be true. 
+     * The condition is not met when NUMPOINTS < 5.
+     * 0 ≤ RADIUS2
+     * A PTS+B PTS ≤ (NUMPOINTS−3)
+     * 
+     * @return whether the LIC13 condition holds or not.
+     */
+    public boolean lic13() {
+        if (numPoints < 5)
+            return false;
+
+        /**
+         * The first condition that checks if there are 3 points separated by A_PTS and B_PTS
+         * that can not be contained in a circle with radius RADIUS1 is the same as LIC8
+         * so if LIC8 is false then LIC13 will also be false.
+         */
+        if(!lic8()){
+            return false;
+        }
+
+        for (int i = 0; i < numPoints - parameters.A_PTS - parameters.B_PTS - 2; i++) {
+            Point a = points[i];
+            Point b = points[i + parameters.A_PTS + 1];
+            Point c = points[i + parameters.A_PTS + 1 + parameters.B_PTS + 1];
+
+            double oRadius;
+
+            /*
+            * if the points make an obtuse triangle, then the longest distance between any
+            * two points make the diameter of the smallest encompassing circle.
+            */
+            if (a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
+                    || c.angleBetween(a, b) > Math.PI / 2) {
+                oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
+            } else {
+                /*
+                * otherwise, we'll have to use the law of sines.
+                *
+                * @see https://en.wikipedia.org/wiki/Law_of_sines
+                */
+                double angle = a.angleBetween(b, c);
+                double len = b.distanceTo(c);
+                oRadius = (len / Math.sin(angle)) / 2;
+                System.out.println(oRadius);
+            }
+
+            /*
+            * If the radius of the smallest possible encompassing circle is smaller or equal to
+            * the set RADIUS2, then we've found three consecutive points which can be
+            * contained within a circle of radius RADIUS2.
+            */
+            if (oRadius <= parameters.RADIUS2)
+                return true;
+        }
+        return false;
     }
 
     boolean lic14() {
