@@ -11,7 +11,7 @@ import Decide.src.main.Parameters;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class LaunchInterceptorCondition0Test {
+public class LaunchInterceptorCondition5Test {
     private Parameters parameters;
     private LaunchInterceptor li;
 
@@ -20,7 +20,6 @@ public class LaunchInterceptorCondition0Test {
     @Test
     public void noPointsTest() {
         parameters = new Parameters();
-        parameters.LENGTH1 = 5;
 
         int numPoints = 0;
 
@@ -28,48 +27,44 @@ public class LaunchInterceptorCondition0Test {
 
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
 
-        assertFalse("LIC0 must be false if there are no points.", li.lic0());
+        assertFalse("LIC5 must be false if there are no points.", li.lic5());
     }
 
     @Test
     public void trivialFailingTest() {
         parameters = new Parameters();
-        parameters.LENGTH1 = 5;
 
         int numPoints = 2;
 
-        Point[] points = {new Point(0, 0), new Point(1, 1)};
+        Point[] points = {new Point(0, 0), new Point(1, 0)};
 
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
 
-        assertFalse(li.lic0());
+        assertFalse(li.lic5());
     }
 
     @Test
     public void trivialPassingTest() {
         parameters = new Parameters();
-        parameters.LENGTH1 = 5;
-
         int numPoints = 2;
 
-        Point[] points = {new Point(0, 0), new Point(10, 10)};
+        Point[] points = {new Point(1, 0), new Point(0, 0)};
 
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
 
-        assertTrue(li.lic0());
+        assertTrue(li.lic5());
     }
 
     @Test
     public void pointsOnEdgeTest() {
         parameters = new Parameters();
-        parameters.LENGTH1 = 10;
 
         int numPoints = 2;
 
-        Point[] points = {new Point(0, 0), new Point(0, 10)};
+        Point[] points = {new Point(0, 0), new Point(0, 0)};
 
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
 
-        assertFalse(li.lic0());
+        assertFalse(li.lic5());
     }
 }
