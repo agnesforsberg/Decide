@@ -139,8 +139,34 @@ public class LaunchInterceptor {
         return true;
     }
 
-    boolean lic3() {
-        return true;
+
+    /**
+     * There exists at least one set of three consecutive data points that are the vertices of a triangle
+     * with area greater than AREA1.
+     * (0 ≤ AREA1)
+     * 
+     * @return whether the LIC3 condition holds or not.
+     */
+    public boolean lic3() {
+        if (numPoints < 3)
+            return false;
+            
+        for (int i = 0; i < numPoints - 2; i++) {
+            Point a = points[i];
+            Point b = points[i+1];
+            Point c = points[i+2];
+            /*
+            * @see https://en.wikipedia.org/wiki/Triangle#Using_coordinates
+            * Factoring on X
+            */
+            double area = Math.abs( (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2);
+            if(area > parameters.AREA1){
+                return true;
+            }
+        }
+        return false;
+
+
     }
 
     boolean lic4() {
