@@ -151,7 +151,15 @@ public class LaunchInterceptor {
     }
 
     boolean lic5() {
-        return true;
+        if (numPoints < 2) {
+            return false;
+        }
+        for (int i = 1; i < numPoints; i++) {
+            if (points[i].x - points[i - 1].x < 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
