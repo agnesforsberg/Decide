@@ -11,7 +11,7 @@ import Decide.src.main.Parameters;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class launchInterceptorCondition9Test {
+public class LaunchInterceptorCondition9Test {
     private Parameters parameters;
     private LaunchInterceptor li;
 
