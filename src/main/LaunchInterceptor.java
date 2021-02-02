@@ -66,6 +66,9 @@ public class LaunchInterceptor {
         this.parameters = parameters;
         this.lcm = lcm;
         this.puv = puv;
+        cmv = new boolean[15];
+        pum = new boolean[15][15];
+        fuv = new boolean[15];
     }
 
     /**
@@ -74,9 +77,12 @@ public class LaunchInterceptor {
      * @return the signal controlling whether an interceptor should be launched
      * based upon input radar tracking information.
      */
-    public boolean decide() {
+    public String decide() {
         calculateCMV();
-        return true;
+        calculatePUM();
+        calculateFUV();
+        boolean launch = calculateLaunch();
+        return launch ? "YES" : "NO";
     }
 
     public void calculateCMV() {
@@ -95,6 +101,30 @@ public class LaunchInterceptor {
         cmv[12] = lic12();
         cmv[13] = lic13();
         cmv[14] = lic14();
+    }
+
+    public void calculatePUM() {
+        // something
+    }
+
+    public void calculateFUV() {
+        for (int i = 0; i < fuv.length; i++) {
+            fuv[i] = true;
+            if (puv[i]) {
+                for (int j = 0; j < pum[i].length; j++){
+                    if (!pum[i][j])
+                        fuv[i] = false;
+                }
+            }
+        }
+    }
+
+    public boolean calculateLaunch() {
+        for (int i = 0; i < fuv.length; i++) {
+            if (!fuv[i])
+                return false;
+        }
+        return true;
     }
 
     public boolean lic0() {
