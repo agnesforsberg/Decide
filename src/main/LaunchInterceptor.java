@@ -172,7 +172,7 @@ public class LaunchInterceptor {
 
     }
 
-    boolean lic4() {
+    public boolean lic4() {
 
         //Ensure basic conditions are met
         //(2 ≤ Q PTS ≤ NUMPOINTS)
@@ -183,7 +183,7 @@ public class LaunchInterceptor {
 
         
         //Iterate over all sets of censecutive set of Q_pts points. Each set is referred as the lowerbound index of the set.
-        for(int i=0; i < numPoints-parameters.Q_PTS; i++){
+        for(int i=0; i < numPoints-parameters.Q_PTS+1; i++){
             
             boolean[] usedQuads = new boolean[4];
             //Iterate over current point and the next Q_pts in the consecutive set of points
