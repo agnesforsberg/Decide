@@ -157,11 +157,14 @@ public class LaunchInterceptor {
 
             double oRadius;
 
+            boolean pointsCoincide = (a.equals(b) || b.equals(c) || c.equals(a));
+
             /*
-             * if the points make an obtuse triangle, then the longest distance between any
-             * two points make the diameter of the smallest encompassing circle.
+             * if two or more points coincide or if the points make an obtuse triangle, then
+             * the longest distance between any two points make the diameter of the smallest
+             * encompassing circle.
              */
-            if (a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
+            if (pointsCoincide || a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
                     || c.angleBetween(a, b) > Math.PI / 2) {
                 oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
             } else {
