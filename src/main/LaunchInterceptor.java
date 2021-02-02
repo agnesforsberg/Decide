@@ -255,7 +255,7 @@ public class LaunchInterceptor {
         //(1 ≤ QUADS ≤ 3)
         if(4 < parameters.QUADS  || parameters.QUADS < 1){ return false;}
 
-        
+
         //Iterate over all sets of censecutive set of Q_pts points. Each set is referred as the lowerbound index of the set.
         for(int i=0; i < numPoints-parameters.Q_PTS+1; i++){
             
@@ -432,8 +432,27 @@ public class LaunchInterceptor {
     return false;
     }
 
-    boolean lic9() {
-        return true;
+    public boolean lic9() {
+        //Ensure basic conditions are met
+        //1 ≤ C PTS, 1 ≤ D PTS
+        if(1 > parameters.C_PTS || 1 > parameters.D_PTS){ return false;}
+
+        //C PTS+D PTS ≤ NUMPOINTS−3
+        if(numPoints-3 < parameters.C_PTS + parameters.D_PTS){ return false;}
+
+        // Iterate over all set of thre points seperated by C_PTS and D_PTS. +2 to include the 2nd and 3rd point in the limit
+        for(int i = 0;i < numPoints - (parameters.C_PTS + parameters.D_PTS + 2);i++){   
+    
+            Point a = points[i];
+            Point b = points[i+parameters.C_PTS+1];
+            Point c = points[i+parameters.C_PTS+parameters.D_PTS+2];
+
+            //angle < (PI−EPSILON)  or angle > (PI+EPSILON)
+            if(b.angleBetween(a, c) < (Math.PI - parameters.EPSILON) || b.angleBetween(a, c) > (Math.PI + parameters.EPSILON)){
+                return true;
+            }
+        }
+        return false;
     }
 
     boolean lic10() {
