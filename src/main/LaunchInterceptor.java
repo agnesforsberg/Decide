@@ -568,8 +568,37 @@ public class LaunchInterceptor {
         return false;
     }
 
-    boolean lic14() {
-        return true;
+    public boolean lic14() {
+        //Ensure basic conditions are met
+        //0 ≤ AREA2
+        if(0 > parameters.AREA2){ return false;}
+        //5 ≤ NUMPOINTS
+        if(5 > numPoints){ return false;}
+
+        boolean condition1 = false;
+        boolean condition2 = false;
+
+        // Iterate over all set of three points seperated by E_PTS and F_PTS. +2 to include the 2nd and 3rd point in the limit
+        for (int i = 0; i < parameters.E_PTS + parameters.F_PTS + 2; i++) {
+            Point a = points[i];
+            Point b = points[i+parameters.E_PTS+1];
+            Point c = points[i+parameters.F_PTS+2];
+            /*
+            * @see https://en.wikipedia.org/wiki/Triangle#Using_coordinates
+            * Factoring on X
+            */
+            double area = Math.abs( (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2);
+
+            if(area > parameters.AREA1){
+                condition1 = true;
+            }
+            if(area < parameters.AREA2){
+                condition2 = true;
+            }
+        }
+        if(condition1 && condition2){ return true;}
+
+        return false;
     }
 
 }
