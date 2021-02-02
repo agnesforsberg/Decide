@@ -1,6 +1,7 @@
 package Decide.src.main;
 
 import java.lang.Math;
+import Decide.src.main.Connector;
 
 public class LaunchInterceptor {
 
@@ -103,7 +104,44 @@ public class LaunchInterceptor {
     }
 
     public void calculatePUM() {
-        // something
+        for (int i = 0; i < pum.length; i++) {
+            for (int j = 0; j < pum[i].length; j++) {
+                /*
+                 * The diagonal is ignored according to specification.
+                 */
+                if (i == j) {
+                    continue;
+                }
+                /*
+                 * Since the matrix is symmetric, we can skip the lower half triangle.
+                 */
+                if (j < i) {
+                    pum[i][j] = pum[j][i];
+                    continue;
+                }
+
+                boolean pumij = false;
+
+                switch (lcm[i][j]) {
+                    case ANDD: {
+                        pumij = cmv[i] && cmv[j];
+                        break;
+                    }
+                    case ORR: {
+                        pumij = cmv[i] || cmv[j];
+                        break;
+                    }
+                    case NOTUSED: {
+                        pumij = true;
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+                pum[i][j] = pumij;
+            }
+        }
     }
 
     public void calculateFUV() {
