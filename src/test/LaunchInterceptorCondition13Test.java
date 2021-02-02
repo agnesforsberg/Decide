@@ -87,14 +87,14 @@ public class LaunchInterceptorCondition13Test {
     @Test
     public void pointsOnEdgeTest() {
         parameters = new Parameters();
-        parameters.RADIUS1 = 4;
+        parameters.RADIUS1 = 3;
         parameters.RADIUS2 = 3.5;
         parameters.A_PTS = 1;
         parameters.B_PTS = 1;
 
         int numPoints = 5;
 
-        Point[] points = { new Point(0, 0), new Point(0, 0), new Point(3.5, 0), new Point(0, 0), new Point(0, 3.5) };
+        Point[] points = { new Point(0, 0), new Point(0, 0), new Point(3.5, 0), new Point(0, 0), new Point(-3.5, 0) };
 
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
 
