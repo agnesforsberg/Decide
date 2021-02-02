@@ -457,7 +457,7 @@ public class LaunchInterceptor {
         return false;
     }
 
-    boolean lic14() {
+    public boolean lic14() {
         //Ensure basic conditions are met
         //0 ≤ AREA2
         if(0 > parameters.AREA2){ return false;}
