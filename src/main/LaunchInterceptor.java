@@ -287,8 +287,25 @@ public class LaunchInterceptor {
         return false;
     }
 
-    boolean lic7() {
-        return true;
+    /**
+     * There exists at least one set of two data points separated by exactly K PTS consecutive
+     * intervening points that are a distance greater than the length, LENGTH1, apart. The condition
+     * is not met when NUMPOINTS < 3
+     * @return whether the LIC7 condition holds or not.
+     */
+    public boolean lic7() {
+        if (numPoints < 3)
+            return false;
+
+        for (int i = 0; i < numPoints - parameters.K_PTS - 1; i++) {
+            Point a = points[i];
+            Point b = points[i + parameters.K_PTS + 1];
+
+            if (a.distanceTo(b) > parameters.LENGTH1 )
+                return true;
+        }
+
+        return false;
     }
 
 
