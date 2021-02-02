@@ -341,7 +341,7 @@ public class LaunchInterceptor {
     return false;
     }
 
-    boolean lic9() {
+    public boolean lic9() {
         //Ensure basic conditions are met
         //1 ≤ C PTS, 1 ≤ D PTS
         if(1 > parameters.C_PTS || 1 > parameters.D_PTS){ return false;}
@@ -352,11 +352,12 @@ public class LaunchInterceptor {
         // Iterate over all set of thre points seperated by C_PTS and D_PTS. +2 to include the 2nd and 3rd point in the limit
         for(int i = 0;i < numPoints - (parameters.C_PTS + parameters.D_PTS + 2);i++){   
     
-            Point a = points[i+parameters.C_PTS+1];
-            Point b = points[i+parameters.C_PTS+parameters.D_PTS+2];
+            Point a = points[i];
+            Point b = points[i+parameters.C_PTS+1];
+            Point c = points[i+parameters.C_PTS+parameters.D_PTS+2];
 
             //angle < (PI−EPSILON)  or angle > (PI+EPSILON)
-            if(points[i].angleBetween(a, b) < (Math.PI - parameters.EPSILON) || points[i].angleBetween(a, b) > (Math.PI + parameters.EPSILON)){
+            if(a.angleBetween(b, c) < (Math.PI - parameters.EPSILON) || a.angleBetween(b, c) > (Math.PI + parameters.EPSILON)){
                 return true;
             }
         }
