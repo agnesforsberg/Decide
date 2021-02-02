@@ -1,6 +1,7 @@
 package Decide.src.main;
 
 import java.lang.Math;
+import java.util.stream.DoubleStream;
 
 /**
  * A class representing a point in 2-D space with double accuracy.
@@ -79,5 +80,40 @@ public class Point {
         double num = Math.abs((b.x - a.x) * (a.y - this.y) - (a.x - this.x) * (b.y - a.y));
         double denom = Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
         return num / denom;
+    }
+
+
+
+    /**
+     * Return the radius of the smallest possible encompassing circle of three given points.
+     * @param a the first point that has to be contained.
+     * @param b the second point that has to be contained.
+     * @param c the third point that has to be contained.
+     * @return the radius of the circle that contains the three points.
+     */
+    public static double smallestCircle(Point a, Point b, Point c){
+        double oRadius;
+
+        boolean pointsCoincide = (a.equals(b) || b.equals(c) || c.equals(a));
+
+        /*
+        * if two or more points coincide or if the points make an obtuse triangle, then
+        * the longest distance between any two points make the diameter of the smallest
+        * encompassing circle.
+        */
+        if (pointsCoincide || a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
+                || c.angleBetween(a, b) > Math.PI / 2) {
+            oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
+        } else {
+            /*
+            * otherwise, we'll have to use the law of sines.
+            *
+            * @see https://en.wikipedia.org/wiki/Law_of_sines
+            */
+            double angle = a.angleBetween(b, c);
+            double len = b.distanceTo(c);
+            oRadius = (len / Math.sin(angle)) / 2;
+        }
+        return oRadius;
     }
 }
