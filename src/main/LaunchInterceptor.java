@@ -413,8 +413,27 @@ public class LaunchInterceptor {
         return false;
     }
 
-    boolean lic12() {
-        return true;
+    /**
+     * There exists at least one set of two data points, separated by exactly K PTS consecutive
+     * intervening points, which are a distance greater than the length, LENGTH1, apart. In addition,
+     * there exists at least one set of two data points (which can be the same or different from
+     * the two data points just mentioned), separated by exactly K PTS consecutive intervening
+     * points, that are a distance less than the length, LENGTH2, apart. Both parts must be true
+     * for the LIC to be true. The condition is not met when NUMPOINTS < 3.
+     * @return whether the LIC12 condition holds or not.
+     */
+    public boolean lic12() {
+        if (!lic7())
+            return false;
+
+        for (int i = 0; i < numPoints - parameters.K_PTS - 1; i++) {
+            Point a = points[i];
+            Point b = points[i + parameters.K_PTS + 1];
+
+            if (a.distanceTo(b) < parameters.LENGTH2 )
+                return true;
+        }
+        return false;
     }
 
     /**
