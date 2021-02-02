@@ -172,8 +172,53 @@ public class LaunchInterceptor {
 
     }
 
-    boolean lic4() {
-        return true;
+    public boolean lic4() {
+
+        //Ensure basic conditions are met
+        //(2 ≤ Q PTS ≤ NUMPOINTS)
+        if(2 > parameters.Q_PTS || numPoints < parameters.Q_PTS){ return false; }
+
+        //(1 ≤ QUADS ≤ 3)
+        if(4 < parameters.QUADS  || parameters.QUADS < 1){ return false;}
+
+        
+        //Iterate over all sets of censecutive set of Q_pts points. Each set is referred as the lowerbound index of the set.
+        for(int i=0; i < numPoints-parameters.Q_PTS+1; i++){
+            
+            boolean[] usedQuads = new boolean[4];
+            //Iterate over current point and the next Q_pts in the consecutive set of points
+            for(int j=i; j < i+parameters.Q_PTS; j++){
+                //Where there is ambiguity as to which quadrant contains a given point, 
+                //priority of decision will be by quadrant number, i.e., I, II, III, I
+
+                //Quadrant I
+                if(points[j].x >= 0 && points[j].y >= 0){
+                    usedQuads[0] = true;
+                } 
+                //Quadrant II
+                else if(points[j].x < 0 && points[j].y >= 0){
+                    usedQuads[1] = true;
+                }
+                //Quadrant III
+                else if(points[j].x < 0 && points[j].y <= 0){
+                    usedQuads[2] = true;
+                }
+                //Quadrant IV
+                else if(points[j].x > 0 && points[j].y < 0){
+                    usedQuads[3] = true;
+                }
+            }
+
+            //Loop over the used quadrant flags
+            int quadCounter = 0;
+            for(boolean b : usedQuads){
+                if(b) quadCounter++; 
+            }
+
+            if(quadCounter > parameters.QUADS) return true; 
+        }
+
+        return false;
     }
 
     public boolean lic5() {
