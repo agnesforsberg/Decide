@@ -88,10 +88,10 @@ public class LaunchInterceptorCondition7Test {
 
         Point[] points = new Point[numPoints];
         points[0] = new Point(0, 0);
-        for (int i = 0; i < numPoints - 1; i++) {
+        for (int i = 1; i < numPoints - 1; i++) {
             points[i] = new Point(rand.nextInt(), rand.nextInt());
         }
-        points[numPoints - 1] = new Point(5,0);
+        points[numPoints - 1] = new Point(6,0);
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
         assertTrue(li.lic7());
 
