@@ -176,4 +176,40 @@ public class PointTest {
 
         assertEquals(5, p.distanceToLineThrough(l1, l2), expectedAccuracy);
     }
+
+    @Test
+    public void radiusWithPointsOnLine() {
+        Point a = new Point(-10, 0);
+        Point b = new Point(0, 0);
+        Point c = new Point(10, 0);
+
+        assertEquals(10, Point.smallestCircle(a, b, c), expectedAccuracy);
+    }
+
+    @Test
+    public void radiusWithStackedPoints() {
+        Point a = new Point(-10, 0);
+        Point b = new Point(10, 0);
+        Point c = new Point(10, 0);
+
+        assertEquals(10, Point.smallestCircle(a, b, c), expectedAccuracy);
+    }
+
+    @Test
+    public void radiusWithObtusePoints() {
+        Point a = new Point(-10, 0);
+        Point b = new Point(5, 0);
+        Point c = new Point(10, 0);
+
+        assertEquals(10, Point.smallestCircle(a, b, c), expectedAccuracy);
+    }
+
+    @Test
+    public void radiusWithNonObtusePoints() {
+        Point a = new Point(-10, 0);
+        Point b = new Point(0, 10);
+        Point c = new Point(10, 0);
+
+        assertEquals(10, Point.smallestCircle(a, b, c), expectedAccuracy);
+    }
 }

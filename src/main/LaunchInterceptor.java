@@ -1,7 +1,6 @@
 package Decide.src.main;
 
 import java.lang.Math;
-import java.util.stream.DoubleStream;
 
 public class LaunchInterceptor {
 
@@ -155,28 +154,7 @@ public class LaunchInterceptor {
             Point b = points[i + 1];
             Point c = points[i + 2];
 
-            double oRadius;
-
-            boolean pointsCoincide = (a.equals(b) || b.equals(c) || c.equals(a));
-
-            /*
-             * if two or more points coincide or if the points make an obtuse triangle, then
-             * the longest distance between any two points make the diameter of the smallest
-             * encompassing circle.
-             */
-            if (pointsCoincide || a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
-                    || c.angleBetween(a, b) > Math.PI / 2) {
-                oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
-            } else {
-                /*
-                 * otherwise, we'll have to use the law of sines.
-                 *
-                 * @see https://en.wikipedia.org/wiki/Law_of_sines
-                 */
-                double angle = a.angleBetween(b, c);
-                double len = b.distanceTo(c);
-                oRadius = (len / Math.sin(angle)) / 2;
-            }
+            double oRadius = Point.smallestCircle(a, b, c);
 
             /*
              * If the radius of the smallest possible encompassing circle is larger than the
@@ -403,25 +381,7 @@ public class LaunchInterceptor {
             Point b = points[i + parameters.A_PTS + 1];
             Point c = points[i + parameters.A_PTS + 1 + parameters.B_PTS + 1];
 
-            double oRadius;
-
-            /*
-            * if the points make an obtuse triangle, then the longest distance between any
-            * two points make the diameter of the smallest encompassing circle.
-            */
-            if (a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
-                    || c.angleBetween(a, b) > Math.PI / 2) {
-                oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
-            } else {
-                /*
-                * otherwise, we'll have to use the law of sines.
-                *
-                * @see https://en.wikipedia.org/wiki/Law_of_sines
-                */
-                double angle = a.angleBetween(b, c);
-                double len = b.distanceTo(c);
-                oRadius = (len / Math.sin(angle)) / 2;
-            }
+            double oRadius = Point.smallestCircle(a, b, c);
 
         /*
          * If the radius of the smallest possible encompassing circle is larger than the
@@ -539,26 +499,7 @@ public class LaunchInterceptor {
             Point b = points[i + parameters.A_PTS + 1];
             Point c = points[i + parameters.A_PTS + 1 + parameters.B_PTS + 1];
 
-            double oRadius;
-
-            /*
-            * if the points make an obtuse triangle, then the longest distance between any
-            * two points make the diameter of the smallest encompassing circle.
-            */
-            if (a.angleBetween(b, c) > Math.PI / 2 || b.angleBetween(a, c) > Math.PI / 2
-                    || c.angleBetween(a, b) > Math.PI / 2) {
-                oRadius = DoubleStream.of(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)).max().getAsDouble() / 2;
-            } else {
-                /*
-                * otherwise, we'll have to use the law of sines.
-                *
-                * @see https://en.wikipedia.org/wiki/Law_of_sines
-                */
-                double angle = a.angleBetween(b, c);
-                double len = b.distanceTo(c);
-                oRadius = (len / Math.sin(angle)) / 2;
-                System.out.println(oRadius);
-            }
+            double oRadius = Point.smallestCircle(a, b, c);
 
             /*
             * If the radius of the smallest possible encompassing circle is smaller or equal to
