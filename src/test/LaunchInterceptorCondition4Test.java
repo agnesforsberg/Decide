@@ -76,6 +76,4 @@ public class LaunchInterceptorCondition4Test {
 
         assertTrue("LIC4 must true since there are a set of consecutive points that cover quadrant I and III", li.lic4());
     }
-
-
 }
