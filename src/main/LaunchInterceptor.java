@@ -43,13 +43,13 @@ public class LaunchInterceptor {
      * (CMV) will be assigned boolean values true or false; each element of the CMV
      * corresponds to one LIC’s condition.
      */
-    boolean[] cmv;
+    public boolean[] cmv;
 
     /**
      * Preliminary Unlocking Matrix (PUM): The values of the CMV joined index-wise
      * through the connectors available in the LCM.
      */
-    boolean[][] pum;
+    public boolean[][] pum;
 
     /**
      * Final Unlocking Vector (FUM): A positive launch decision can only be made if
@@ -57,7 +57,7 @@ public class LaunchInterceptor {
      * is false, or if PUV[i] is true and all elements in PUM[i, j] is true for all
      * j != i, 0 <= j <= 14.
      */
-    boolean[] fuv;
+    public boolean[] fuv;
 
     public LaunchInterceptor(int numPoints, Point[] points, Parameters parameters, Connector[][] lcm, boolean[] puv) {
         this.numPoints = numPoints;
