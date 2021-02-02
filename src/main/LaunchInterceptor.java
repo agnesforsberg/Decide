@@ -138,8 +138,33 @@ public class LaunchInterceptor {
         return false;
     }
 
-    boolean lic2() {
-        return true;
+    public boolean lic2() {
+        if (numPoints < 3)
+            return false;
+
+        for (int i = 0; i < numPoints - 2; i++) {
+            Point a = points[i];
+            Point b = points[i + 1];
+            Point c = points[i + 2];
+
+            // If either endpoint coincides with the vertex return false
+            if (a.equals(b) || c.equals(b))
+                return false;
+
+            // abcAngle is the same as cbaAngle
+            // b is always the vertex of the angle
+            double abcAngle = b.angleBetween(a, c);
+
+            double piMinusEp = Math.PI - parameters.EPSILON;
+            double piPlusEp = Math.PI + parameters.EPSILON;
+
+            if (abcAngle < piMinusEp || abcAngle > piPlusEp ) {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 
