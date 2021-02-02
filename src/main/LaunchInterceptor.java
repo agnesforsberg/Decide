@@ -357,7 +357,7 @@ public class LaunchInterceptor {
             Point c = points[i+parameters.C_PTS+parameters.D_PTS+2];
 
             //angle < (PI−EPSILON)  or angle > (PI+EPSILON)
-            if(a.angleBetween(b, c) < (Math.PI - parameters.EPSILON) || a.angleBetween(b, c) > (Math.PI + parameters.EPSILON)){
+            if(b.angleBetween(a, c) < (Math.PI - parameters.EPSILON) || b.angleBetween(a, c) > (Math.PI + parameters.EPSILON)){
                 return true;
             }
         }
