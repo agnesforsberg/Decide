@@ -175,13 +175,13 @@ public class LaunchInterceptor {
     boolean lic4() {
 
         //Ensure basic conditions are met
-
         //(2 ≤ Q PTS ≤ NUMPOINTS)
         if(2 > parameters.Q_PTS || numPoints < parameters.Q_PTS){ return false; }
 
         //(1 ≤ QUADS ≤ 3)
         if(4 < parameters.QUADS  || parameters.QUADS < 1){ return false;}
 
+        
         //Iterate over all sets of censecutive set of Q_pts points. Each set is referred as the lowerbound index of the set.
         for(int i=0; i < numPoints-parameters.Q_PTS; i++){
             
@@ -214,7 +214,7 @@ public class LaunchInterceptor {
             for(boolean b : usedQuads){
                 if(b) quadCounter++; 
             }
-                
+
             if(quadCounter > parameters.QUADS) return true; 
         }
 
