@@ -75,7 +75,26 @@ public class LaunchInterceptor {
      * based upon input radar tracking information.
      */
     public boolean decide() {
+        calculateCMV();
         return true;
+    }
+
+    public void calculateCMV() {
+        cmv[0] = lic0();
+        cmv[1] = lic1();
+        cmv[2] = lic2();
+        cmv[3] = lic3();
+        cmv[4] = lic4();
+        cmv[5] = lic5();
+        cmv[6] = lic6();
+        cmv[7] = lic7();
+        cmv[8] = lic8();
+        cmv[9] = lic9();
+        cmv[10] = lic10();
+        cmv[11] = lic11();
+        cmv[12] = lic12();
+        cmv[13] = lic13();
+        cmv[14] = lic14();
     }
 
     public boolean lic0() {
