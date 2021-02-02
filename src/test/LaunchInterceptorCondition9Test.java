@@ -32,22 +32,38 @@ public class launchInterceptorCondition9Test {
 
     @Test
     public void trivialFailingTest() {
+        parameters = new Parameters();
+        parameters.C_PTS = 1;
+        parameters.D_PTS = 1;
+        parameters.EPSILON = Math.PI*0.51;
+        int numPoints = 5;
 
+        Point[] points = {  new Point(0,1), 
+                            new Point(0,0),
+                            new Point(0,0),
+                            new Point(0,0),
+                            new Point(1,0)};
+
+        li = new LaunchInterceptor(numPoints, points, parameters, null, null);
+        assertFalse("LIC9 shuld be true when the angle PI/2 is used with an epsilon greater than pi/2", li.lic9());
     }
 
     @Test
     public void trivialPassingTest() {
         parameters = new Parameters();
-        parameters.C_PTS = 0;
-        parameters.C_PTS = 0;
-        parameters.EPSILON = Math.PI*0.66;
+        parameters.C_PTS = 1;
+        parameters.D_PTS = 1;
+        parameters.EPSILON = Math.PI*0.33;
         int numPoints = 5;
 
-        Point[] points = {new Point(0,1), new Point(0,0),
-            new Point(1,0)};
+        Point[] points = {  new Point(0,1), 
+                            new Point(0,0),
+                            new Point(0,0),
+                            new Point(0,0),
+                            new Point(1,0)};
 
         li = new LaunchInterceptor(numPoints, points, parameters, null, null);
-        assertTrue(" "+points[1].angleBetween(points[0], points[2]), li.lic9());
+        assertTrue("LIC9 shuld be true when the angle PI/2 is used with an epsilon less than pi/2", li.lic9());
     }
 
     @Test
