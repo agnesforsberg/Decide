@@ -1,218 +1,113 @@
 package Decide.src.test;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
+import Decide.src.main.LaunchInterceptor;
+import Decide.src.main.Parameters;
 import Decide.src.main.Point;
+import Decide.src.main.Connector;
+
+import static org.junit.Assert.*;
 
 public class LaunchInterceptorTest {
+    private Parameters parameters;
+    private LaunchInterceptor li;
 
     /**
-     * LIC0 Descriptor There exists at least one set of two consecutive data points
-     * that are a distance greater than the length, LENGTH1, apart.
-     * 
-     * (0 ≤ LENGTH1)
+     * Tests the main program using only LIC0, LIC1, LIC2
+     * The PUV is all true and LCM all ANDD
+     * Tests that decide outputs "YES"
      */
     @Test
-    public void lic0Test() {
-        assertTrue(1 == 0);
+    public void topLevelLicsTruePUVAllTrueOutputYES() {
+        // All parameters must be set and valid for CMV to be computed.
+        int length1 = 6;
+        int radius1 = 2;
+        int epsilon = 1;
+        parameters = new Parameters(length1, radius1, epsilon, 1, 2, 2, 1, 3,
+                1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0);
+
+        int numPoints = 3;
+        Point[] points = { new Point(0, 4), new Point(0, 0), new Point(7, 0)};
+
+        Connector[][] lcm = new Connector[3][3];
+        boolean[] puv = new boolean[3];
+
+        for (int i = 0; i < 3; i++){
+            puv[i] = true;
+            for (int j = 0; j < 3; j++){
+                lcm[i][j] = Connector.ANDD;
+            }
+        }
+
+        li = new LaunchInterceptor(numPoints, points, parameters, lcm, puv, 3);
+        assertTrue(li.lic0());
+        assertTrue(li.lic1());
+        assertTrue(li.lic2());
+        assertEquals("YES", li.decide());
     }
 
     /**
-     * LIC1 Descriptor There exists at least one set of three consecutive data
-     * points points that cannot all be contained within or on a circle of radius
-     * RADIUS1.
-     * 
-     * (0 ≤ RADIUS1)
+     * Tests that output is YES even if all LICS (0, 1, 2) return false IF PUV is all false.
      */
     @Test
-    public void lic1Test() {
+    public void toplevelLicsFalsePUVAllFalseOutputYES() {
+        // All parameters must be set and valid for CMV to be computed.
+        int length1 = 20;
+        int radius1 = 10;
+        int epsilon = 4;
+        parameters = new Parameters(length1, radius1, epsilon, 1, 2, 2, 1, 3,
+                1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0);
 
+        int numPoints = 3;
+        Point[] points = { new Point(0, 4), new Point(0, 0), new Point(7, 0)};
+
+        Connector[][] lcm = new Connector[3][3];
+        // default false
+        boolean[] puv = new boolean[3];
+
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                lcm[i][j] = Connector.ANDD;
+            }
+        }
+
+        li = new LaunchInterceptor(numPoints, points, parameters, lcm, puv, 3);
+        assertFalse(li.lic0());
+        assertFalse(li.lic1());
+        assertFalse(li.lic2());
+        assertEquals("YES", li.decide());
     }
 
     /**
-     * LIC2 Descriptor There exists at least one set of three consecutive data
-     * points which form an angle such that: angle < (PI−EPSILON) or angle >
-     * (PI+EPSILON) The second of the three consecutive points is always the vertex
-     * of the angle. If either the first point or the last point (or both) coincides
-     * with the vertex, the angle is undefined and the LIC is not satisfied by those
-     * three points.
-     * 
-     * (0 ≤ EPSILON < PI)
+     * Tests that when all Lics (0, 1, 2) output false and PUV is all true output will be "NO".
      */
     @Test
-    public void lic2Test() {
+    public void toplevelLicsFalsePUVAllTrueOutputNO() {
+        // All parameters must be set and valid for CMV to be computed.
+        int length1 = 20;
+        int radius1 = 10;
+        int epsilon = 4;
+        parameters = new Parameters(length1, radius1, epsilon, 1, 2, 2, 1, 3,
+                1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0);
+
+        int numPoints = 3;
+        Point[] points = { new Point(0, 4), new Point(0, 0), new Point(7, 0)};
+
+        Connector[][] lcm = new Connector[3][3];
+        boolean[] puv = new boolean[3];
+
+        for (int i = 0; i < 3; i++){
+            puv[i] = true;
+            for (int j = 0; j < 3; j++){
+                lcm[i][j] = Connector.ANDD;
+            }
+        }
+
+        li = new LaunchInterceptor(numPoints, points, parameters, lcm, puv, 3);
+        assertFalse(li.lic0());
+        assertFalse(li.lic1());
+        assertFalse(li.lic2());
+        assertEquals("NO", li.decide());
     }
 
-    /**
-     * LIC3 Descriptor There exists at least one set of three consecutive data
-     * points that are the vertices of a triangle with area greater than AREA1.
-     * 
-     * (0 ≤ AREA1)
-     */
-    @Test
-    public void lic3Test() {
-    }
-
-    /**
-     * LIC4 Descripitor There exists at least one set of Q PTS consecutive data
-     * points that lie in more than QUADS quadrants. Where there is ambiguity as to
-     * which quadrant contains a given point, priority of decision will be by
-     * quadrant number, i.e., I, II, III, IV. For example, the data point (0,0) is
-     * in quadrant I, the point (-l,0) is in quadrant II, the point (0,-l) is in
-     * quadrant III, the point (0,1) is in quadrant I and the point (1,0) is in
-     * quadrant I.
-     * 
-     * (2 ≤ Q PTS ≤ NUMPOINTS), (1 ≤ QUADS ≤ 3)
-     */
-    @Test
-    public void lic4Test() {
-    }
-
-    /**
-     * LIC5 Descriptor There exists at least one set of two consecutive data points,
-     * (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1)
-     */
-    @Test
-    public void lic5Test() {
-    }
-
-    /**
-     * LIC6 Descriptor There exists at least one set of N PTS consecutive data
-     * points such that at least one of the points lies a distance greater than DIST
-     * from the line joining the first and last of these N PTS points. If the first
-     * and last points of these N PTS are identical, then the calculated distance to
-     * compare with DIST will be the distance from the coincident point to all other
-     * points of the N PTS consecutive points. The condition is not met when
-     * NUMPOINTS < 3
-     * 
-     * (3 ≤ N PTS ≤ NUMPOINTS), (0 ≤ DIST)
-     */
-    @Test
-    public void lic6Test() {
-    }
-
-    /**
-     * LIC7 Descriptor There exists at least one set of two data points separated by
-     * exactly K PTS consecutive intervening points that are a distance greater than
-     * the length, LENGTH1, apart. The condition is not met when NUMPOINTS < 3.
-     * 
-     * 1 ≤ K PTS ≤ (NUMPOINTS−2)
-     */
-    @Test
-    public void lic7Test() {
-    }
-
-    /**
-     * LIC8 Descriptor There exists at least one set of three data points separated
-     * by exactly A PTS and B PTS consecutive intervening points, respectively, that
-     * cannot be contained within or on a circle of radius RADIUS1. The condition is
-     * not met when NUMPOINTS < 5.
-     * 
-     * 1 ≤ A PTS, 1 ≤ B PTS A PTS+B PTS ≤ (NUMPOINTS−3)
-     */
-    @Test
-    public void lic8Test() {
-    }
-
-    /**
-     * LIC9 Descriptor There exists at least one set of three data points separated
-     * by exactly C PTS and D PTS consecutive intervening points, respectively, that
-     * form an angle such that:
-     * 
-     * angle < (PI−EPSILON) or angle > (PI+EPSILON)
-     * 
-     * The second point of the set of three points is always the vertex of the
-     * angle. If either the first point or the last point (or both) coincide with
-     * the vertex, the angle is undefined and the LIC is not satisfied by those
-     * three points. When NUMPOINTS < 5, the condition is not met.
-     * 
-     * 1 ≤ C PTS, 1 ≤ D PTS C PTS+D PTS ≤ NUMPOINTS−3
-     */
-    @Test
-    public void lic9Test() {
-    }
-
-    /**
-     * LIC10 Descriptor There exists at least one set of three data points separated
-     * by exactly E PTS and F PTS consecutive intervening points, respectively, that
-     * are the vertices of a triangle with area greater than AREA1. The condition is
-     * not met when NUMPOINTS < 5.
-     * 
-     * 1 ≤ E PTS, 1 ≤ F PTS E PTS+F PTS ≤ NUMPOINTS−3
-     */
-    @Test
-    public void lic10Test() {
-    }
-
-    /**
-     * LIC11 Descriptor There exists at least one set of two data points,
-     * (X[i],Y[i]) and (X[j],Y[j]), separated by exactly G PTS consecutive
-     * intervening points, such that X[j] - X[i] < 0. (where i < j ) The condition
-     * is not met when NUMPOINTS < 3.
-     * 
-     * 1 ≤ G PTS ≤ NUMPOINTS−2
-     */
-    @Test
-    public void lic11Test() {
-    }
-
-    /**
-     * LIC12 Descriptor There exists at least one set of two data points, separated
-     * by exactly K PTS consecutive intervening points, which are a distance greater
-     * than the length, LENGTH1, apart.
-     * 
-     * In addition, there exists at least one set of two data points (which can be
-     * the same or different fromthe two data points just mentioned), separated by
-     * exactly K PTS consecutive intervening points, that are a distance less than
-     * the length, LENGTH2, apart.
-     * 
-     * Both parts must be true for the LIC to be true. The condition is not met when
-     * NUMPOINTS < 3.
-     * 
-     * 0 ≤ LENGTH2
-     */
-    @Test
-    public void lic12Test() {
-    }
-
-    /**
-     * LIC13 Descriptor There exists at least one set of three data points,
-     * separated by exactly A PTS and B PTS consecutive intervening points,
-     * respectively, that cannot be contained within or on a circle of radius
-     * RADIUS1.
-     * 
-     * In addition, there exists at least one set of three data points (which can be
-     * the same or different from the three data points just mentioned) separated by
-     * exactly A PTS and B PTS consecutive intervening points, respectively, that
-     * can be contained in or on a circle of radius RADIUS2.
-     * 
-     * Both parts must be true for the LIC to be true. The condition is not met when
-     * NUMPOINTS < 5.
-     * 
-     * 0 ≤ RADIUS2
-     */
-    @Test
-    public void lic13Test() {
-    }
-
-    /**
-     * LIC14 Descriptor There exists at least one set of three data points,
-     * separated by exactly E PTS and F PTS consecutive intervening points,
-     * respectively, that are the vertices of a triangle with area greater than
-     * AREA1.
-     * 
-     * In addition, there exist three data points (which can be the same or
-     * different from the three data points just mentioned) separated by exactly E
-     * PTS and F PTS consecutive intervening points, respectively, that are the
-     * vertices of a triangle with area less than AREA2.
-     * 
-     * Both parts must be true for the LIC to be true. The condition is not met when
-     * NUMPOINTS < 5.
-     * 
-     * 0 ≤ AREA2
-     */
-    @Test
-    public void lic14Test() {
-    }
 }

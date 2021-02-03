@@ -23,7 +23,7 @@ public class Main {
 
         int numTests = 15;
 
-        LaunchInterceptor launch = new LaunchInterceptor(numpoints, points, parameters, LCM, PUV, numTests);
+        LaunchInterceptor launch = new LaunchInterceptor(numpoints, points, parameters, LCM, PUV);
         System.out.print(launch.decide());
 
     }
