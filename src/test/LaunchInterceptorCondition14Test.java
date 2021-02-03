@@ -19,6 +19,7 @@ public class LaunchInterceptorCondition14Test {
 
     @Test
     public void noPointsTest() {
+        //LIC14 should fail when there are no points
         parameters = new Parameters();
 
         int numPoints = 0;
@@ -32,6 +33,7 @@ public class LaunchInterceptorCondition14Test {
 
     @Test
     public void fewPointsTest() {
+        //LIC14 should fail when numPoints is less than 5
         parameters = new Parameters();
         parameters.E_PTS = 0;
         parameters.F_PTS = 0;
@@ -52,6 +54,8 @@ public class LaunchInterceptorCondition14Test {
 
     @Test
     public void trivialFailingTest() {
+        //LIC14 should fail when ther is no triangle between three consecutive points that has an area greater than 1.2
+        //Largest in this example has the area 1, 
         parameters = new Parameters();
         parameters.E_PTS = 0;
         parameters.F_PTS = 0;
@@ -72,6 +76,8 @@ public class LaunchInterceptorCondition14Test {
 
     @Test
     public void trivialPassingTest() {
+        //LIC14 should pass when ther is a triangle between three consecutive points that has an area 
+        // greater than AREA1 and less than AREA2 
         parameters = new Parameters();
         parameters.E_PTS = 0;
         parameters.F_PTS = 0;
