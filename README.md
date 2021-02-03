@@ -15,6 +15,7 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
 - **parameters**: Struct holding parameters for LIC’s.
 - **lcm**: 15x15 Logical Connector Matrix with ```Connector``` enunm types.
 - **puv**: 15x1 boolean Preliminary Unlocking Vector containing the relevant LIC's.
+- **numTests** (optional): The number of LICs used in the test. 
 
 ## Requirements
     Junit: 4.13.1 or above
@@ -29,13 +30,18 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
   - LIC 9, implementation and testing
   - LIC 14, implementation and testing
   - Author of README 
-- E-Joon Ko
+- **E-Joon Ko**
     - Stuff
-- Agnes Forsberg
-    - Stuff
-- Niklas Tomsic
+- **Agnes Forsberg**
+    - LIC 2, implementation and testing
+    - LIC 7, implementation and testing
+    - LIC 12, implementation and testing
+    - FUV evaluation implementation
+    - LAUNCH evaluation implementation
+    - Top-level tests implementation
+- **Niklas Tomsic**
   - Stuff
-- Caroline Borg
+- **Caroline Borg**
   - LIC 1, implementation and testing
   - LIC 6, implementation and testing
   - LIC 11, implementation and testing
