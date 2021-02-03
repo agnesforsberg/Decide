@@ -66,9 +66,22 @@ public class LaunchInterceptor {
         this.parameters = parameters;
         this.lcm = lcm;
         this.puv = puv;
+        // calculateCMV only works with all tests, but the rest will be disregarded later if numTests < 15
         cmv = new boolean[15];
         pum = new boolean[15][15];
         fuv = new boolean[15];
+    }
+
+    public LaunchInterceptor(int numPoints, Point[] points, Parameters parameters, Connector[][] lcm, boolean[] puv, int numTests) {
+        this.numPoints = numPoints;
+        this.points = points;
+        this.parameters = parameters;
+        this.lcm = lcm;
+        this.puv = puv;
+        // calculateCMV only works with all tests, but the rest will be disregarded later if numTests < 15
+        cmv = new boolean[15];
+        pum = new boolean[numTests][numTests];
+        fuv = new boolean[numTests];
     }
 
     /**
