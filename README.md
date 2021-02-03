@@ -7,7 +7,10 @@ January 1986.
 
 ## How to use
 
+
 ## Requirements
+    Junit: 4.13.1
+    Java JDK: 11.0.9.1
 
 
 ## Contributions
