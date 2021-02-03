@@ -6,7 +6,7 @@ N. G. Leveson, IEEE Transactions on Software Engineering 12(1):96–109,
 January 1986.
 
 ## How to use
-The class ```LaunchInterceptor```  provides a method ```decide()``` which returns a boolean launch signal to the interceptor based on the input information. Such as radar information in the form of planar points, and configuration information in the form of the helper class ```Parameters```. Classes ```Point``` and ```Connector``` are also provided as helper classes but to use the system one does not need to use these directly if advanced use of the system is not wanted.
+The class ```LaunchInterceptor```  provides a method ```decide()``` which returns a boolean launch signal to the interceptor based on the input information. Such as radar information in the form of planar points, and configuration information in the form of the helper class ```Parameters```. Classes ```Point``` and ```Connector``` are also provided as helper classes but to use the system one does not need to use these directly.
 
 To use the ```LaunchInterceptor``` one has to create an instance of it, and provide the parameters:
 
