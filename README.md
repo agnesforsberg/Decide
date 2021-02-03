@@ -40,7 +40,11 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
     - LAUNCH evaluation implementation
     - Top-level tests implementation
 - **Niklas Tomsic**
-  - Stuff
+  - Co-Author of extending Skeleton Code
+  - LIC 3, implementation and testing
+  - LIC 8, implementation and testing
+  - LIC 13, implementation and testing
+  - Small fixes related to redundant code
 - **Caroline Borg**
   - LIC 1, implementation and testing
   - LIC 6, implementation and testing
