@@ -17,8 +17,8 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
 - **puv**: 15x1 boolean Preliminary Unlocking Vector containing the relevant LIC's.
 
 ## Requirements
-    Junit: 4.13.1
-    Java JDK: 11.0.9.1
+    Junit: 4.13.1 or above
+    Java JDK: 11.0.9.1 or above
 
 
 ## Contributions
