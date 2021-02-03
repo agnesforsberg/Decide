@@ -496,7 +496,7 @@ public class LaunchInterceptor {
         return false;
     }
 
-    boolean lic10() {
+    public boolean lic10() {
         if (numPoints < 5) {
             return false;
         }
