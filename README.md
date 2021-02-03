@@ -35,4 +35,9 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
 - Niklas Tomsic
   - Stuff
 - Caroline Borg
-  - Stuff
+  - LIC 1, implementation and testing
+  - LIC 6, implementation and testing
+  - LIC 11, implementation and testing
+  - Co-author of Point class
+  - PUM evaluation implementation
+  - Rebase Cannon Fodder
