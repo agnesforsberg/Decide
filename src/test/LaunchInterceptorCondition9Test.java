@@ -19,6 +19,7 @@ public class LaunchInterceptorCondition9Test {
 
     @Test
     public void noPointsTest() {
+        //LIC9 should fail if there are no points
         parameters = new Parameters();
 
         int numPoints = 0;
@@ -32,6 +33,7 @@ public class LaunchInterceptorCondition9Test {
 
     @Test
     public void trivialFailingTest() {
+        //LIC9 should fail when there is an angle (PI/2) between 3 points and epsilon is greater than (PI/2)
         parameters = new Parameters();
         parameters.C_PTS = 1;
         parameters.D_PTS = 1;
@@ -50,6 +52,7 @@ public class LaunchInterceptorCondition9Test {
 
     @Test
     public void trivialPassingTest() {
+        //LIC9 should pass when there is an angle (PI/2) between 3 points and epsilon is less than (PI/2)
         parameters = new Parameters();
         parameters.C_PTS = 1;
         parameters.D_PTS = 1;
@@ -68,6 +71,7 @@ public class LaunchInterceptorCondition9Test {
 
     @Test
     public void tooFewPointsTest() {
+        //LIC9 should fail when there are less than 5 points
         parameters = new Parameters();
         parameters.C_PTS = 1;
         parameters.D_PTS = 1;
