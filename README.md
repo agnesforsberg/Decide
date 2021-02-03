@@ -24,10 +24,11 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
 ## Contributions
 
 - **Jakob Berggren**
-  - Skeleton Code
-  - LIC 4
-  - LIC 9
-  - LIC 14
+  - Co-author of Skeleton Code
+  - LIC 4, implementation and testing
+  - LIC 9, implementation and testing
+  - LIC 14, implementation and testing
+  - Author of README 
 - E-Joon Ko
     - Stuff
 - Agnes Forsberg
