@@ -67,7 +67,19 @@ public class LaunchInterceptorCondition9Test {
     }
 
     @Test
-    public void pointsOnEdgeTest() {
+    public void tooFewPointsTest() {
+        parameters = new Parameters();
+        parameters.C_PTS = 1;
+        parameters.D_PTS = 1;
+        parameters.EPSILON = Math.PI*0.33;
+        int numPoints = 4;
 
+        Point[] points = {  new Point(0,1), 
+                            new Point(0,0),
+                            new Point(0,0),
+                            new Point(1,0)};
+
+        li = new LaunchInterceptor(numPoints, points, parameters, null, null);
+        assertFalse(li.lic9());
     }
 }

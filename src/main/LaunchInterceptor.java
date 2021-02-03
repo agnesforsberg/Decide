@@ -479,6 +479,11 @@ public class LaunchInterceptor {
             return false;
         }
 
+        //5 ≤ NUMPOINTS
+        if (numPoints < 5) {
+            return false;
+        }
+
         // Iterate over all set of thre points seperated by C_PTS and D_PTS. +2 to
         // include the 2nd and 3rd point in the limit
         for (int i = 0; i < numPoints - (parameters.C_PTS + parameters.D_PTS + 2); i++) {
