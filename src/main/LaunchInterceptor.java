@@ -214,6 +214,16 @@ public class LaunchInterceptor {
         return false;
     }
 
+    /**
+     * There exists at least one set of three consecutive data points which form an angle such that:
+     * angle < (PI−EPSILON)
+     * or
+     * angle > (PI+EPSILON)
+     * The second of the three consecutive points is always the vertex of the angle. If either the first
+     * point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC
+     * is not satisfied by those three points.
+     * @return whether the LIC2 condition holds or not.
+     */
     public boolean lic2() {
         if (numPoints < 3)
             return false;

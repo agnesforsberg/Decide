@@ -18,6 +18,9 @@ public class LaunchInterceptorCondition7Test {
 
     private Random rand = new Random();
 
+    /**
+     * Tests that LIC7 returns false when there are no points.
+     */
     @Test
     public void noPointsTest() {
         parameters = new Parameters();
@@ -33,6 +36,9 @@ public class LaunchInterceptorCondition7Test {
         assertFalse("LIC7 must be false if there are no points.", li.lic7());
     }
 
+    /**
+     * Tests that LIC7 returns false when there are less than 3 points.
+     */
     @Test
     public void notEnoughPointsTest() {
         parameters = new Parameters();
@@ -48,6 +54,10 @@ public class LaunchInterceptorCondition7Test {
         assertFalse("LIC7 must be false if there are less than 3 points.", li.lic7());
     }
 
+    /**
+     * Tests that LIC7 returns false when the points separated by K_PTS points are less than LENGTH1 apart.
+     * Here points[0] and points[2] are 1 point apart, but only 2 in length.
+     */
     @Test
     public void notFarEnoughApartTest() {
         parameters = new Parameters();
@@ -63,6 +73,10 @@ public class LaunchInterceptorCondition7Test {
         assertFalse("LIC7 must be false if the two points are not LENGTH1 apart.", li.lic7());
     }
 
+    /**
+     * Tests that LIC7 returns true when the 2 points separated by K_PTS points are more than LENGTH1 apart.
+     * LENGTH1 = 5 and their distance is 6.
+     */
     @Test
     public void farEnoughApartTest() {
         parameters = new Parameters();
@@ -78,6 +92,9 @@ public class LaunchInterceptorCondition7Test {
         assertTrue(li.lic7());
     }
 
+    /**
+     * Tests that LIC7 can handle large K_PTS and does not care where those points are in the plane.
+     */
     @Test
     public void kptsLargeTrueTest() {
         parameters = new Parameters();
@@ -98,6 +115,9 @@ public class LaunchInterceptorCondition7Test {
 
     }
 
+    /**
+     * Tests that LIC7 can detect false input with large K_PTS.
+     */
     @Test
     public void kptsLargeFalseTest() {
         parameters = new Parameters();
