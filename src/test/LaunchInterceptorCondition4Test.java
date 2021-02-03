@@ -19,6 +19,7 @@ public class LaunchInterceptorCondition4Test {
 
     @Test
     public void noPointsTest() {
+        //LIC4 returns false if there are no points
         parameters = new Parameters();
 
         parameters.Q_PTS = 2;
@@ -34,6 +35,7 @@ public class LaunchInterceptorCondition4Test {
 
     @Test
     public void trivialFailingTest(){
+        //LIC4 returns false if QUADS=2 and there are only points in one quadrant
         parameters = new Parameters();
 
         parameters.Q_PTS = 2;
@@ -49,6 +51,7 @@ public class LaunchInterceptorCondition4Test {
 
     @Test
     public void tooManyQuadsTest(){
+        //LIC4 returns false if QUADS is greater than 3
         parameters = new Parameters();
 
         parameters.Q_PTS = 2;
@@ -64,6 +67,7 @@ public class LaunchInterceptorCondition4Test {
 
     @Test
     public void trivialPassingTest(){
+        //LIC returns true if there are points in more quadrants than QUADS specify
         parameters = new Parameters();
 
         parameters.Q_PTS = 2;
