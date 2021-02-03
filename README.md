@@ -31,7 +31,10 @@ To use the ```LaunchInterceptor``` one has to create an instance of it, and prov
   - LIC 14, implementation and testing
   - Author of README 
 - **E-Joon Ko**
-    - Stuff
+  - Project Leader of assignment 1
+  - LIC 0, implementation and testing
+  - LIC 5, implementation and testing
+  - LIC 10, implementation and testing
 - **Agnes Forsberg**
     - LIC 2, implementation and testing
     - LIC 7, implementation and testing
