@@ -474,7 +474,27 @@ public class LaunchInterceptor {
     }
 
     boolean lic10() {
-        return true;
+        if (numPoints < 5) {
+            return false;
+        }
+
+        if (parameters.E_PTS < 1 || parameters.F_PTS < 1) {
+            return false;
+        }
+
+        if (parameters.E_PTS + parameters.F_PTS <= numPoints - 3) {
+            for (int i = 0; i + parameters.E_PTS + parameters.F_PTS + 2 < numPoints; i++) {
+                Point a = points[i];
+                Point b = points[i + 1 + parameters.E_PTS];
+                Point c = points[i + 2 + parameters.E_PTS + parameters.F_PTS];
+                double area = Math.abs((a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2);
+                if (area > parameters.AREA1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
