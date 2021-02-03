@@ -514,7 +514,7 @@ public class LaunchInterceptor {
      * intervening points, respectively, that are the vertices of a triangle with area greater
      * than AREA1. The condition is not met when NUMPOINTS < 5.
      * 1 < E PTS, 1 < F PTS
-     * E_PTS+F_PTS <= NUMPOINTS􀀀3
+     * E_PTS+F_PTS <= NUMPOINTS - 3
      */
     public boolean lic10() {
         if (numPoints < 5) {
