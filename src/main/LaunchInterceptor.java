@@ -185,6 +185,10 @@ public class LaunchInterceptor {
         return true;
     }
 
+    /**
+     * There exists at least one set of two consecutive data points
+     * that are a distance greater than the length, LENGTH1, apart.
+     */
     public boolean lic0() {
         if (numPoints < 2) {
             return false;
@@ -348,6 +352,10 @@ public class LaunchInterceptor {
         return false;
     }
 
+    /**
+     * There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]),
+     * such that X[j] - X[i] < 0. (where i = j - 1)
+     */
     public boolean lic5() {
         if (numPoints < 2) {
             return false;
@@ -501,6 +509,13 @@ public class LaunchInterceptor {
         return false;
     }
 
+    /**
+     * There exists at least one set of three data points separated by exactly E_PTS and F_PTS consecutive
+     * intervening points, respectively, that are the vertices of a triangle with area greater
+     * than AREA1. The condition is not met when NUMPOINTS < 5.
+     * 1 < E PTS, 1 < F PTS
+     * E_PTS+F_PTS <= NUMPOINTS􀀀3
+     */
     public boolean lic10() {
         if (numPoints < 5) {
             return false;
